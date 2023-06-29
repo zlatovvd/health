@@ -1,0 +1,104 @@
+.title {
+  font-family: 'Verdana';
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.39;
+  margin-top: 32px;
+  margin-bottom: 34px;
+}
+
+.calculateForm {
+  padding-bottom: 100px;
+}
+
+.formInput {
+  width: 240px;
+  padding-bottom: 10px;
+  margin-bottom: 32px;
+  font-family: 'Verdana';
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.21;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.bloodTitle {
+  font-family: 'Verdana';
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #9b9faa;
+}
+
+.bloodTypeLabel:active,
+.bloodTypeLabel:focus {
+  color: #fc842d;
+}
+
+.bloodTypeLabel:not(:last-child) {
+  margin-right: 20px;
+}
+
+.bloodTypeRadio {
+  margin-right: 5px;
+}
+
+.submitBtn {
+  display: block;
+  padding: 13px 25px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  background-color: #fc842d;
+  font-family: 'Verdana';
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #ffffff;
+  border-radius: 30px;
+  border: transparent;
+  box-shadow: 0px 4px 10px 0px #fc842d80;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 34px;
+    margin-top: 100px;
+    margin-bottom: 59px;
+  }
+
+  .calculateForm {
+    padding-bottom: 400px;
+  }
+
+  .inputWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    column-gap: 10px;
+    height: 280px;
+    width: 530px;
+  }
+
+  .formInput {
+    margin-bottom: 59px;
+  }
+
+  .submitBtn {
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+
+  .calculateForm {
+    padding-bottom: 80px;
+  }
+
+  .submitBtn {
+    margin-left: auto;
+  }
+}
