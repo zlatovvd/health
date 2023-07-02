@@ -1,26 +1,27 @@
-.navList {
+.authList {
+    margin-left: auto;
+    display: flex;
     list-style: none;
 }
 
-.navItem {
+.authItem {
     color: #9B9FAA;
     text-transform: uppercase;
 }
 
+.authItem:first-child {
+    margin-right: 15px;
+}
+
 @media screen and (min-width: 1280px) {
     
-    .navList {
-        display: flex;
-        align-self: flex-end;
+    .authList {
         margin: 0;
+        align-self: flex-end;
         padding: 0;
     }
 
-    .navItem:first-child {
-        margin-right: 15px;
-    }
-
-    .navList::before {
+    .authList::before {
         content: "";
         display: inline-block;
         width: 32px;
@@ -29,6 +30,5 @@
         margin-right: 10px;
         border-bottom: 2px solid #E0E0E0;
         transform: rotate(90deg);
-    }    
-
+    }
 }

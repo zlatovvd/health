@@ -1,0 +1,39 @@
+.loginPage {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 40px 20px 175px 20px;
+}
+
+h2 {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 55px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px;
+    line-height: 1.21;
+    color: #FC842D;
+    text-transform:uppercase;
+}
+
+@media screen and (min-width: 768px) {
+
+    h2 {
+        text-align:left;
+        margin: 0;
+        margin-bottom: 55px;
+    }
+
+    .loginPage {
+        padding-top: 160px;
+        padding-bottom: 494px;
+    }
+    
+}
+
+@media screen and (min-width:1280px) {
+
+    .loginPage {
+        padding-bottom: 255px;
+    }
+}

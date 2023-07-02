@@ -1,0 +1,29 @@
+.mainPage {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.title {
+    font-size: 18px;
+    line-height: 1.39;
+    margin-top: 32px;
+    margin-bottom: 34px;
+}
+
+@media screen and (min-width: 768px) {
+    .title {
+        max-width: 704px;
+        font-size: 34px;
+        margin-top: 100px;
+        margin-bottom: 59px;
+      }
+    
+}
+
+@media screen and (min-width: 1280px) {
+
+    .title {
+        max-width: 608px;
+    }
+    
+}

@@ -1,0 +1,8 @@
+.input {
+    font-size: 14px;
+    color: #9B9FAA;
+}
+
+.input:not(:last-child) {
+    margin-bottom: 32px;
+}
