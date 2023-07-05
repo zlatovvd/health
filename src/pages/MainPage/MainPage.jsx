@@ -8,9 +8,9 @@ const MainPage = () => {
       <h1 className={css.title}>
         Calculate your daily calorie intake right now
       </h1>
-      {/* <DailyCaloriesForm /> */}
+      <DailyCaloriesForm />
       {/* <DailyCalorieIntake/> */}
-      <DiaryAddProductForm/>
+      {/* <DiaryAddProductForm/> */}
     </div>
   );
 };

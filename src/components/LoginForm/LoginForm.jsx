@@ -25,7 +25,7 @@ const LoginForm = () => {
   const handleSubmit = () => {};
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={css.loginForm}>
       <input
         type="text"
         className={css.email}

@@ -1,4 +1,4 @@
-input {
+.loginForm input {
     width: 280px;
     padding-bottom: 10px;
     font-weight: 700;
@@ -39,7 +39,7 @@ input {
 
 @media screen and (min-width: 768px) {
 
-    input {
+    .registerForm input {
         display: block;
     }
 

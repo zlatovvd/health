@@ -29,7 +29,7 @@ const RegistrationForm = () => {
   const handleSubmit = () => {};
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={css.registerForm}>
       <input
         type="text"
         className={css.regname}

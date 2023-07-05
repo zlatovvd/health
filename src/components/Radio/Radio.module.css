@@ -1,0 +1,57 @@
+/* Stack */
+
+.row {
+    display: flex;
+}
+
+.column {
+    display: block
+}
+
+/*  */
+
+.radioLabel {
+    display: flex;
+    align-items: baseline;
+    margin-right: 30px;
+}
+
+.inputRadio {
+    height: 1px;
+    width: 1px;
+    outline: none;
+}
+
+.radio {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    height: 20px;
+    width: 20px;
+    margin: 0;
+    border-radius: 50%;
+    border: 2px solid #E0E0E0
+}
+
+.radio::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    /* background-color: #FC842D; */
+}
+
+.radioMessage {
+    margin-left: 10px;
+    
+    color:#E0E0E0;
+}
+
+.inputRadio:checked + .radio::before {
+    background-color: #FC842D;
+}
+
+.inputRadio:checked ~ .radioMessage {
+    color: #FC842D;
+}
