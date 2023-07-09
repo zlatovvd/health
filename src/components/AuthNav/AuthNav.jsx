@@ -1,7 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import css from './AuthNav.module.css';
-import logo from 'images/logo-mobile.png';
 
 const StyledLink = styled(NavLink)`
     font-size: 14px;
@@ -16,7 +15,7 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-const Navigation = () => {
+const AuthNav = () => {
   return (
       <ul className={css.authList}>
         <li className={css.authItem}>
@@ -29,4 +28,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default AuthNav;

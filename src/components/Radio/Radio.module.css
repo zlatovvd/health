@@ -2,6 +2,8 @@
 
 .row {
     display: flex;
+    width: 240px;
+    justify-content: space-between;
 }
 
 .column {
@@ -13,7 +15,7 @@
 .radioLabel {
     display: flex;
     align-items: baseline;
-    margin-right: 30px;
+    /* //margin-right: 30px; */
 }
 
 .inputRadio {
@@ -45,7 +47,7 @@
 .radioMessage {
     margin-left: 10px;
     
-    color:#E0E0E0;
+    color:#9B9FAA;
 }
 
 .inputRadio:checked + .radio::before {

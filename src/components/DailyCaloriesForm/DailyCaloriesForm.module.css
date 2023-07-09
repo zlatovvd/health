@@ -14,24 +14,58 @@
 .bloodTitle {
   text-align: left;
   color: #9b9faa;
+  margin: 0;
+  margin-bottom: 10px;
 }
 
-.bloodWrapper {
-  /* display: flex; */
+
+.row {
+  display: flex;
+  width: 240px;
+  justify-content: space-between;
 }
 
-.bloodTypeLabel:active,
-.bloodTypeLabel:focus {
-  color: #fc842d;
+.radioLabel {
+  display: flex;
+  align-items: baseline;
 }
 
-.bloodTypeLabel:not(:last-child) {
-  /* margin-right: 20px; */
+.inputRadio {
+  height: 1px;
+  width: 1px;
+  outline: none;
 }
 
-.bloodTypeRadio {
-  /* margin-right: 5px; */
-  padding: 0;
+.radio {
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  height: 20px;
+  width: 20px;
+  margin: 0;
+  border-radius: 50%;
+  border: 2px solid #E0E0E0
+}
+
+.radio::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.radioMessage {
+  margin-left: 10px;
+  color:#9B9FAA;
+}
+
+.inputRadio:checked + .radio::before {
+  background-color: #FC842D;
+}
+
+.inputRadio:checked ~ .radioMessage {
+  color: #FC842D;
 }
 
 .submitBtn {
