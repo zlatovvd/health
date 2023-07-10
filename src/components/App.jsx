@@ -24,9 +24,10 @@ export const App = () => {
           <Route path="" element={<PublicRoute />}>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/registration" element={<RegistrationPage />} />
+            <Route path='/diary' element={<DiaryPage/>} />
           </Route>
           <Route path='' element={<PrivateRoute/>}>
-            <Route path='/diary' element={<DiaryPage/>} />
+            
           </Route>
         </Route>
       </Routes>
