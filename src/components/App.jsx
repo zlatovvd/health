@@ -6,15 +6,9 @@ import LoginPage from 'pages/LoginPage/LoginPage';
 import RegistrationPage from 'pages/RegistrationPage/RegistrationPage';
 import { PublicRoute, PrivateRoute } from './AuthRouts';
 import DiaryPage from 'pages/DiaryPage/DiaryPage';
-import { useSelector } from 'react-redux';
-import { selectNotRecommendedProducts, selectProducts, selectRecommendedIntake } from 'redux/products/selectors';
+import CalculatorPage from 'pages/CalculatorPage/CalculatorPage';
 
 export const App = () => {
-
-  const p = useSelector(selectProducts);
-  //const pn = useSelector(selectNotRecommendedProducts);
-  console.log(p);
- // console.log(pn);
 
   return (
     <div className={css.app}>
@@ -24,10 +18,10 @@ export const App = () => {
           <Route path="" element={<PublicRoute />}>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/registration" element={<RegistrationPage />} />
-            <Route path='/diary' element={<DiaryPage/>} />
           </Route>
-          <Route path='' element={<PrivateRoute/>}>
-            
+          <Route path="" element={<PrivateRoute />}>
+            <Route path="/diary" element={<DiaryPage />} />
+            <Route path="/calculator" element={<CalculatorPage />} />
           </Route>
         </Route>
       </Routes>

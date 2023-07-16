@@ -5,7 +5,7 @@ import DailyCalorieIntake from 'components/DailyCalorieIntake/DailyCalorieIntake
 import { Radio, Stack } from 'components/Radio/Radio';
 import { useDebugValue, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDailyCalories } from 'redux/products/intakeSlice';
+import { addDailyCalories } from 'redux/intake/intakeSlice';
 import { selectProducts } from 'redux/products/selectors';
 
 const DailyCaloriesForm = () => {

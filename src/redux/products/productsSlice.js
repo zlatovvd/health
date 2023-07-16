@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import data from '../../data.json';
 
-const productsInitState = data;
+const productsInitState = {
+  data,
+  filter: '',
+} 
 
 const productsSlice = createSlice({
   name: 'products',
@@ -12,9 +15,14 @@ const productsSlice = createSlice({
         state = [...state, payload];
       },
     },
+    setFilter: {
+      reducer(state, {payload}){
+        state.filter = payload;
+      }
+    }
   },
 });
 
-export const { addProductAction } = productsSlice.actions;
+export const { addProductAction, setFilter } = productsSlice.actions;
 
 export const productsReducer = productsSlice.reducer;

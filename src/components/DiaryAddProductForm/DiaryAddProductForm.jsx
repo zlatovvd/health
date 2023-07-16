@@ -1,23 +1,31 @@
 import css from './DiaryAddProductForm.module.css';
-import { Input } from '@chakra-ui/react';
-import { Button, ButtonGroup } from '@chakra-ui/react';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectDiary } from 'redux/diary/diarySelector';
+import { selectDiary, selectDiaryDate } from 'redux/diary/diarySelector';
 import { addDiary } from 'redux/diary/diarySlice';
+import { setFilter } from 'redux/products/productsSlice';
+import {
+  selectFilteredProducts,
+  selectFoundProduct,
+} from 'redux/products/selectors';
 
 const DiaryAddProductForm = () => {
   const [product, setProduct] = useState('');
   const [grams, setGrams] = useState('');
+  const [isOpen, setIsOpen] = useState(true);
 
   const dispatch = useDispatch();
   const diary = useSelector(selectDiary);
+  const filteredProducts = useSelector(selectFilteredProducts);
+  const foundProduct = useSelector(selectFoundProduct);
+  const diaryDate = useSelector(selectDiaryDate);
 
-  const handleChange = (event) => {
-    const {name, value} = event.target;
+  const handleChange = event => {
+    const { name, value } = event.target;
     switch (name) {
       case 'product':
+        dispatch(setFilter(value));
         setProduct(value);
         break;
       case 'grams':
@@ -25,29 +33,61 @@ const DiaryAddProductForm = () => {
         break;
       default:
     }
-  }
+  };
 
-  const onSubmit = (event) => {
+  const handlerClickItem = event => {
+    dispatch(setFilter(event.target.textContent));
+    setProduct(event.target.textContent);
+    setIsOpen(!isOpen);
+  };
+
+  const handlerClickInput = () => {
+    setIsOpen(true);
+  };
+
+  const onSubmit = event => {
     event.preventDefault();
-    const id =  nanoid();
-    dispatch(addDiary({id, product, grams}));
-  }
+    resetForm();
+    const id = nanoid();
+    const { calories, categories, groupBloodNotAllowed } = foundProduct;
+    dispatch(addDiary({ id, product, grams, calories, diaryDate }));
+  };
+
+  const resetForm = () => {
+    setProduct('');
+    setGrams('');
+  };
 
   return (
-    <form onSubmit={onSubmit}>
-      <Input
-        className={css.input}
-        variant="flushed"
+    <form onSubmit={onSubmit} className={css.form}>
+      <input
+        className={`${css.input} ${css.productInput}`}
         placeholder="Enter product name"
         name="product"
         value={product}
         onChange={handleChange}
-        pattern="^[a-zA-z]*"
+        onClick={handlerClickInput}
+        // pattern="^[a-zA-z]*"
+        autoComplete="off"
         required
       />
-      <Input
-        className={css.input}
-        variant="flushed"
+
+      {product && isOpen ? (
+        <ul className={css.autocomplete}>
+          {filteredProducts.map(item => (
+            <li
+              className={css.autocompleteItem}
+              key={item._id.$oid}
+              onClick={handlerClickItem}
+            >
+              {item.title.ua}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      <input
+        className={`${css.input} ${css.gramsInput}`}
         placeholder="Grams"
         name="grams"
         value={grams}
@@ -55,22 +95,11 @@ const DiaryAddProductForm = () => {
         pattern="^[0-9]*"
         required
       />
-      <Button
-        bgColor="#FC842D"
-        width={176}
-        height={44}
-        borderRadius={30}
-        border="transparent"
-        color="#FFFFFF"
-        boxShadow="0px 4px 10px 0px #FC842D80"
-        type='submit'
-      >
-        Add
-      </Button>
 
-      <p>{diary}</p>
+      <button className={css.addButton} type="submit" >
+        <span className={css.srOnly}>Add</span>
+      </button>
     </form>
-
   );
 };
 

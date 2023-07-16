@@ -1,11 +1,20 @@
 import { Input } from '@chakra-ui/react';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectDiaryDate } from 'redux/diary/diarySelector';
 
 const DiaryDateСalendar = () => {
-  const [diaryDate, setDiaryDate] = useState('');
+
+  const day = useSelector(selectDiaryDate);
+
+  const [diaryDate, setDiaryDate] = useState(day);
+  
+  const dispatch = useDispatch(); 
 
     const handleChange = (event) => {
+      console.log(event.target.value);
         setDiaryDate(event.target.value);
+        //dispatch(setDiaryDate(diaryDate));
     }
 
   return (

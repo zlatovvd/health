@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import css from './LoginForm.module.css';
+import { useDispatch } from 'react-redux';
+import { authLogIn } from 'redux/auth/authSlice';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
 
   const handleOnChange = event => {
     const { name, value } = event.currentTarget;
@@ -18,7 +22,9 @@ const LoginForm = () => {
     }
   };
 
-  const handleLoginBtn = () => {};
+  const handleLoginBtn = () => {
+    dispatch(authLogIn({email, password}));
+  };
 
   const handleRegisteBtn = () => {};
 
