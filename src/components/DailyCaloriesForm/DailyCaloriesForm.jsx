@@ -2,11 +2,9 @@ import { useToggle } from 'hooks/useToggle';
 import css from './DailyCaloriesForm.module.css';
 import Modal from 'components/Modal/Modal';
 import DailyCalorieIntake from 'components/DailyCalorieIntake/DailyCalorieIntake';
-import { Radio, Stack } from 'components/Radio/Radio';
-import { useDebugValue, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addDailyCalories } from 'redux/intake/intakeSlice';
-import { selectProducts } from 'redux/products/selectors';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addPersonInfo } from 'redux/intake/intakeSlice';
 
 const DailyCaloriesForm = () => {
   const { isOpen, toggle } = useToggle();
@@ -16,7 +14,6 @@ const DailyCaloriesForm = () => {
   const [cWeight, setCWeight] = useState('');
   const [dWeight, setDWeight] = useState('');
 
-  const products = useSelector(selectProducts);
   const dispatch = useDispatch();
 
   const handleChange = event => {
@@ -43,12 +40,15 @@ const DailyCaloriesForm = () => {
 
   const onSubmit = event => {
     event.preventDefault();
-    dispatch(addDailyCalories({ height, age, cWeight, dWeight, typeblood }));
-    toggle();
+    dispatch(addPersonInfo({ height, age, cWeight, dWeight, typeblood }));
+    //toggle();
   };
 
   return (
     <>
+      <h1 className={css.title}>
+        Calculate your daily calorie intake right now
+      </h1>
       <form className={css.calculateForm} onSubmit={onSubmit}>
         <div className={css.inputWrapper}>
           <input
@@ -144,21 +144,6 @@ const DailyCaloriesForm = () => {
                 <span className={css.radioMessage}>4</span>
               </label>
             </div>
-
-            {/* <Stack direction="row">
-              <Radio value="1" name="typeblood">
-                1
-              </Radio>
-              <Radio value="2" name="typeblood">
-                2
-              </Radio>
-              <Radio value="3" name="typeblood">
-                3
-              </Radio>
-              <Radio value="4" name="typeblood">
-                4
-              </Radio>
-            </Stack> */}
           </div>
         </div>
          
@@ -167,11 +152,11 @@ const DailyCaloriesForm = () => {
         </button>
       </form>
 
-      {isOpen && (
+      {/* {isOpen && (
         <Modal close={toggle}>
           <DailyCalorieIntake />
         </Modal>
-      )}
+      )} */}
     </>
   );
 };

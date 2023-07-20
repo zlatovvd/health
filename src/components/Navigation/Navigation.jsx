@@ -1,28 +1,25 @@
 import { NavLink } from 'react-router-dom';
 import css from './Navigation.module.css';
-import styled from 'styled-components';
 
-const StyledLink = styled(NavLink)`
-    font-size: 18px;
-    line-height: 1.22;
-    text-transform: uppercase;
-    color: #9b9faa;
-    text-decoration: none;
-
-  &.active {
-    color: #ffffff;
-  }
-`;
-
-const Navigation = () => {
-    return (
-        <nav className={css.nav}>
-            <ul className={css.navList}>
-                <li className={css.navItem}><StyledLink to ='/diary'>Diary</StyledLink></li>
-                <li className={css.navItem}><StyledLink to='/calculator'>Calculator</StyledLink></li>
-            </ul>
-        </nav>
-    )
-}
+const Navigation = ({ isMenu, handleMenuClick }) => {
+  return (
+    <ul className={`${css.navList} ${isMenu && css.isVisible}`}>
+      <li className={css.navItem}>
+        <NavLink to="/diary" className={css.navLink} onClick={handleMenuClick}>
+          Diary
+        </NavLink>
+      </li>
+      <li className={css.navItem}>
+        <NavLink
+          to="/calculator"
+          className={css.navLink}
+          onClick={handleMenuClick}
+        >
+          Calculator
+        </NavLink>
+      </li>
+    </ul>
+  );
+};
 
 export default Navigation;

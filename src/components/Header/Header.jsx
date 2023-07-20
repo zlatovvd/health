@@ -20,14 +20,15 @@ const Header = () => {
     <>
       <header className={css.header}>
         {<Logo />}
-        {/* {isLoggedIn && <Navigation />} */}
+        {isLoggedIn && (
+          <Navigation isMenu={isMenu} handleMenuClick={handleMenuClick} />
+        )}
         {isLoggedIn ? <UserInfo /> : <AuthNav />}
         <button
           className={`${!isMenu ? css.menuBtn : css.closeBtn}`}
           onClick={handleMenuClick}
         ></button>
       </header>
-      {isMenu && <Navigation/>}
     </>
   );
 };

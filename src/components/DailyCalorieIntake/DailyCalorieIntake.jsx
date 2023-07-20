@@ -1,38 +1,13 @@
 import { useSelector } from 'react-redux';
 import css from './DailyCalorieIntake.module.css';
-import { selectDailyCalories, selectProducts } from 'redux/products/selectors';
+import {
+  selectCalculateDailyCalories,
+  selectNotRecommendedProducts,
+} from 'redux/products/selectors';
 
 const DailyCalorieIntake = () => {
-  const dailyCalories = useSelector(selectDailyCalories);
-  const products = useSelector(selectProducts);
-  const { height, age, cWeight, dWeight, typeblood } = dailyCalories;
-
-  const calculate = (height, age, cWeight, dWeight) => {
-    return (
-      10 * Number(cWeight) +
-      6.25 * Number(height) -
-      5 * Number(age) -
-      161 -
-      10 * (Number(cWeight) - Number(dWeight))
-    );
-  };
-
-  const notRecommendedProducts = (typeblood, products) => {
-    const notRecommended = [];
-    products.map(item => {
-      if (
-        item.groupBloodNotAllowed[typeblood] === true &&
-        !notRecommended.includes(item.categories[0])
-      ) {
-        notRecommended.push(item.categories[0]);
-      }
-    });
-
-    return notRecommended;
-  };
-
-  const calories = calculate(height, age, cWeight, dWeight);
-  const notRecommended = notRecommendedProducts(typeblood, products)
+  const calories = useSelector(selectCalculateDailyCalories);
+  const notRecommended = useSelector(selectNotRecommendedProducts);
 
   return (
     <>
@@ -45,7 +20,9 @@ const DailyCalorieIntake = () => {
         <h2 className={css.foodTitle}>Foods you should not eat</h2>
         <ol className={css.foodList}>
           {notRecommended.map(item => (
-            <li key={item} className={css.foodItem}>{item}</li>  
+            <li key={item} className={css.foodItem}>
+              {item}
+            </li>
           ))}
         </ol>
         <button className={css.modalBtn}>Start losing weight</button>

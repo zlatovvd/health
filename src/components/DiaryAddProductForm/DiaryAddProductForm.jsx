@@ -2,7 +2,7 @@ import css from './DiaryAddProductForm.module.css';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectDiary, selectDiaryDate } from 'redux/diary/diarySelector';
+import { selectDiaryDate } from 'redux/diary/diarySelector';
 import { addDiary } from 'redux/diary/diarySlice';
 import { setFilter } from 'redux/products/productsSlice';
 import {
@@ -16,7 +16,6 @@ const DiaryAddProductForm = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   const dispatch = useDispatch();
-  const diary = useSelector(selectDiary);
   const filteredProducts = useSelector(selectFilteredProducts);
   const foundProduct = useSelector(selectFoundProduct);
   const diaryDate = useSelector(selectDiaryDate);
@@ -49,8 +48,11 @@ const DiaryAddProductForm = () => {
     event.preventDefault();
     resetForm();
     const id = nanoid();
-    const { calories, categories, groupBloodNotAllowed } = foundProduct;
-    dispatch(addDiary({ id, product, grams, calories, diaryDate }));
+    const { calories, categories, groupBloodNotAllowed, weight } = foundProduct;
+
+    const calculateCalories = Math.round((calories*grams)/weight);
+
+    dispatch(addDiary({ id, product, grams, calories:calculateCalories, diaryDate }));
   };
 
   const resetForm = () => {

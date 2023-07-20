@@ -1,34 +1,16 @@
 const { createSlice } = require('@reduxjs/toolkit');
 
 const initIntake = {
-  eatenProduct: [
-    {
-      idProduct: '5d51694802b2373622ff553b',
-      title: 'Яйцо куриное (желток сухой)',
-      calories: 623,
-    },
-  ],
-  dailyCalories: {}
+  personInfo: null,
 };
 
 const intakeSlice = createSlice({
   name: 'intake',
   initialState: initIntake,
   reducers: {
-    addProduct: {
-      reducer(state, { payload }) {
-        state = [...state, payload];
-      },
-    },
-    deleteProduct: {
-      reducer(state, { payload }) {
-        state = state.filter(product => product.id === payload.id);
-      },
-    },
-    addDailyCalories: {
+    addPersonInfo: {
       reducer(state, {payload}) {
-        console.log('slice', payload);
-        state.dailyCalories = payload; 
+        state.personInfo = payload;
       }
     }
 
@@ -36,4 +18,4 @@ const intakeSlice = createSlice({
 });
 
 export const intakeReducer = intakeSlice.reducer;
-export const { addProduct, addDailyCalories } = intakeSlice.actions;
+export const { addPersonInfo } = intakeSlice.actions;

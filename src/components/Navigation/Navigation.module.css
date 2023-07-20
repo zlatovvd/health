@@ -1,25 +1,23 @@
-.nav {
-    /* display: none; */
+.navList {
     position: absolute;
     left: 0;
     top: 80px;
     width: 100vw;
     height: 100vh;
-    padding-top: 60px;
-    background-color: #264061;
-    z-index: 9999;
-    /* transform: translateX(-100%);
-    transition: transform 300ms linear; */
-}
-
-.nav.isVisible {
-    /* transform: translateX(0); */
-}
-
-.navList {
     list-style: none;
     margin: 0;
     padding: 0;
+    padding-top: 60px;
+    background-color: #264061;
+    z-index: 9999;
+    visibility: hidden;
+    transform: translateX(-100%);
+    transition: transform 300ms linear, visibility 300ms linear;
+}
+
+.navList.isVisible {
+    transform: translateX(0);
+    visibility: visible;
 }
 
 .navItem {
@@ -31,21 +29,45 @@
     margin-bottom: 30px;
 }
 
-@media screen and (min-width: 1280px) {
-    
-    .nav {
-        position: static;
-        display: block;
-    }
+.navLink {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.22;
+}
+
+.navLink:hover,
+.navLink:active {
+    color:#9B9FAA;
+}
+
+@media screen and (min-width: 768px) {
 
     .navList {
+        padding-top: 100px;
+    }
+   
+    .navLink {
+        font-size: 24px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    
+    .navList {
+        position: static;
         display: flex;
-        align-self: flex-end;
+        transform: translateX(0);
+        height: auto;
+        width: auto;
         margin: 0;
         padding: 0;
+        visibility: visible;
+        background-color: #ffffff;
     }
-
-    .navItem:first-child {
+   
+    .navItem:not(:last-child) {
+        margin-bottom: 0;
         margin-right: 15px;
     }
 
@@ -59,5 +81,16 @@
         border-bottom: 2px solid #E0E0E0;
         transform: rotate(90deg);
     }    
+
+    .navLink {
+        color:#9B9FAA;
+        font-size: 14px;
+    }
+
+    .navLink:active,
+    .navLink:hover,
+    .navLink:focus {
+        color: #212121;
+    }
 
 }

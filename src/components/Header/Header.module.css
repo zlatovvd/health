@@ -17,6 +17,7 @@
   border: none;
   background-color: transparent;
   transition: all 300ms linear;
+  cursor: pointer;
 }
 
 .closeBtn {
@@ -29,6 +30,7 @@
   border: none;
   background-color: transparent;
   transition: all 300ms linear;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 1280px) {
@@ -38,7 +40,8 @@
     border: none;
   }
 
-  .menuBtn {
+  .menuBtn,
+  .menuClose {
     display: none;
   }
 }
