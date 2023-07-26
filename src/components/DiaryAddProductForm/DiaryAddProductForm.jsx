@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectDiaryDate } from 'redux/diary/diarySelector';
 import { addDiary } from 'redux/diary/diarySlice';
+import { selectIsOpen } from 'redux/modal/modalSelector';
+import { open } from 'redux/modal/modalSlice';
 import { setFilter } from 'redux/products/productsSlice';
 import {
   selectFilteredProducts,
@@ -19,6 +21,7 @@ const DiaryAddProductForm = () => {
   const filteredProducts = useSelector(selectFilteredProducts);
   const foundProduct = useSelector(selectFoundProduct);
   const diaryDate = useSelector(selectDiaryDate);
+  const isModalOpen = useSelector(selectIsOpen);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -52,7 +55,10 @@ const DiaryAddProductForm = () => {
 
     const calculateCalories = Math.round((calories*grams)/weight);
 
-    dispatch(addDiary({ id, product, grams, calories:calculateCalories, diaryDate }));
+    dispatch(addDiary({ id, product, grams, calories: calculateCalories, diaryDate }));
+    if (isModalOpen) {
+      dispatch(open(false));
+    }
   };
 
   const resetForm = () => {
@@ -62,17 +68,19 @@ const DiaryAddProductForm = () => {
 
   return (
     <form onSubmit={onSubmit} className={css.form}>
-      <input
-        className={`${css.input} ${css.productInput}`}
-        placeholder="Enter product name"
-        name="product"
-        value={product}
-        onChange={handleChange}
-        onClick={handlerClickInput}
-        // pattern="^[a-zA-z]*"
-        autoComplete="off"
-        required
-      />
+      <label className={css.inputLabel}>
+        Enter product name
+        <input
+          className={`${css.input} ${css.productInput}`}
+          name="product"
+          value={product}
+          onChange={handleChange}
+          onClick={handlerClickInput}
+          // pattern="^[a-zA-z]*"
+          autoComplete="off"
+          required
+        />
+      </label>
 
       {product && isOpen ? (
         <ul className={css.autocomplete}>
@@ -88,17 +96,19 @@ const DiaryAddProductForm = () => {
         </ul>
       ) : null}
 
-      <input
-        className={`${css.input} ${css.gramsInput}`}
-        placeholder="Grams"
-        name="grams"
-        value={grams}
-        onChange={handleChange}
-        pattern="^[0-9]*"
-        required
-      />
+      <label className={css.inputLabel}>
+        Grams
+        <input
+          className={`${css.input} ${css.gramsInput}`}
+          name="grams"
+          value={grams}
+          onChange={handleChange}
+          pattern="^[0-9]*"
+          required
+        />
+      </label>
 
-      <button className={css.addButton} type="submit" >
+      <button className={css.addButton} type="submit">
         <span className={css.srOnly}>Add</span>
       </button>
     </form>

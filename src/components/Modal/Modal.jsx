@@ -1,14 +1,18 @@
 import css from './Modal.module.css';
 import ReactDOM from 'react-dom';
 import { useEffect, useState, useRef } from 'react';
-import { Radio, Stack } from 'components/Radio/Radio';
+import { useDispatch } from 'react-redux';
+import { open } from 'redux/modal/modalSlice';
 
 const Modal = ({ close, children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const backdropRef = useRef();
 
+  const dispatch = useDispatch();
+
   const closeModal = () => {
     setIsOpen(false);
+    dispatch(open(false));
     setTimeout(() => {
       close();
     }, 250);
@@ -29,6 +33,7 @@ const Modal = ({ close, children }) => {
 
   useEffect(() => {
     setIsOpen(true);
+    dispatch(open(true));
     document.addEventListener('keydown', handleKeyEscape);
     backdropRef.current.addEventListener('click', handleBackdropClick);
 

@@ -14,14 +14,14 @@ export const App = () => {
     <div className={css.app}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<MainPage />} />
           <Route path="" element={<PublicRoute />}>
+            <Route index element={<MainPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/registration" element={<RegistrationPage />} />
           </Route>
           <Route path="" element={<PrivateRoute />}>
-            <Route path="/diary" element={<DiaryPage />} />
             <Route path="/calculator" element={<CalculatorPage />} />
+            <Route path="/diary" element={<DiaryPage />} />
           </Route>
         </Route>
       </Routes>

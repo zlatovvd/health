@@ -61,7 +61,7 @@ export const selectNotRecommendedProducts = createSelector(
       return notRecommended;
     }
 
-    return "";
+    return [];
     
   }
 );

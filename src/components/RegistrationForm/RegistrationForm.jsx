@@ -19,6 +19,7 @@ const RegistrationForm = () => {
       case 'password':
         setPassword(value);
         break;
+      default:
     }
   };
 
@@ -30,30 +31,38 @@ const RegistrationForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className={css.registerForm}>
-      <input
-        type="text"
-        className={css.regname}
-        name="regname"
-        value={regname}
-        onChange={handleOnChange}
-        placeholder="Name*"
-      />
-      <input
-        type="text"
-        className={css.email}
-        name="email"
-        value={email}
-        onChange={handleOnChange}
-        placeholder="Email*"
-      />
-      <input
-        type="password"
-        className={css.password}
-        name="password"
-        value={password}
-        onChange={handleOnChange}
-        placeholder="Password*"
-      />
+      <h2 className={css.title}>Register</h2>
+      <label className={css.formLabel}>
+        "Name*
+        <input
+          type="text"
+          className={css.regname}
+          name="regname"
+          value={regname}
+          onChange={handleOnChange}
+        />
+      </label>
+      <label className={css.formLabel}>
+        Email*
+        <input
+          type="text"
+          className={css.email}
+          name="email"
+          value={email}
+          onChange={handleOnChange}
+        />
+      </label>
+      <label className={css.formLabel}>
+        Password*
+        <input
+          type="password"
+          className={css.password}
+          name="password"
+          value={password}
+          onChange={handleOnChange}
+        />
+      </label>
+
       <div>
         <button className={css.button} onClick={handleRegisteBtn}>
           Register

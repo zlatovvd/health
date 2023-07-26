@@ -4,10 +4,18 @@ import {
   selectCalculateDailyCalories,
   selectNotRecommendedProducts,
 } from 'redux/products/selectors';
+import { useNavigate } from 'react-router-dom';
 
-const DailyCalorieIntake = () => {
+const DailyCalorieIntake = ({close}) => {
   const calories = useSelector(selectCalculateDailyCalories);
   const notRecommended = useSelector(selectNotRecommendedProducts);
+
+  const navigate = useNavigate();
+
+  const handleModalBtn = () => {
+    close();
+    navigate('/login');
+  }
 
   return (
     <>
@@ -25,7 +33,7 @@ const DailyCalorieIntake = () => {
             </li>
           ))}
         </ol>
-        <button className={css.modalBtn}>Start losing weight</button>
+        <button className={css.modalBtn} onClick={handleModalBtn}>Start losing weight</button>
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 const { createSlice } = require('@reduxjs/toolkit');
 
 const initIntake = {
-  personInfo: null,
+  personInfo: {},
 };
 
 const intakeSlice = createSlice({

@@ -14,10 +14,10 @@ const UserInfo = () => {
   };
 
   return (
-    <div className={css.userWrapper}>
+    <div className={css.userInfo}>
       <span className={css.userName}>{email}</span>
       <button className={css.exitBtn} type="button" onClick={handleClick}>
-        Exit
+       Exit
       </button>
     </div>
   );

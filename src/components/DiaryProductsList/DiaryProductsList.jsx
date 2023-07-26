@@ -5,20 +5,16 @@ import DiaryProductsListItem from './DiaryProductsListItem';
 
 const DiaryProductsList = () => {
   const diary = useSelector(selectDiary);
-  
-  const handleAddClick = () => {
-    
-  }
 
   return (
-    <>
+    <div className={css.productList}>
       <ul className={css.diaryProductsList}>
         {diary.map(item => (
           <DiaryProductsListItem key={item.id} diary={item} />
         ))}
       </ul>
-      <button type='button' onClick={handleAddClick}>Add</button>
-    </>
+
+    </div>
   );
 };
 

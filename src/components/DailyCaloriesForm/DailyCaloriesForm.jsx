@@ -41,60 +41,68 @@ const DailyCaloriesForm = () => {
   const onSubmit = event => {
     event.preventDefault();
     dispatch(addPersonInfo({ height, age, cWeight, dWeight, typeblood }));
-    //toggle();
+    toggle();
   };
 
   return (
     <>
-      <h1 className={css.title}>
-        Calculate your daily calorie intake right now
-      </h1>
       <form className={css.calculateForm} onSubmit={onSubmit}>
+        <h1 className={css.title}>
+          Calculate your daily calorie intake right now
+        </h1>
         <div className={css.inputWrapper}>
-          <input
-            className={css.formInput}
-            type="text"
-            name="height"
-            placeholder="Height *"
-            onChange={handleChange}
-            value={height}
-            pattern="^[0-9]{2,3}"
-            required
-          />
-          <input
-            className={css.formInput}
-            type="text"
-            name="age"
-            placeholder="Age *"
-            onChange={handleChange}
-            value={age}
-            pattern="^[0-9]{2,3}"
-            required
-          />
-          <input
-            className={css.formInput}
-            type="text"
-            name="cweight"
-            placeholder="Current weight *"
-            onChange={handleChange}
-            value={cWeight}
-            pattern="^[0-9]{2,3}"
-            required
-          />
-          <input
-            className={css.formInput}
-            type="text"
-            name="dweight"
-            placeholder="Desired weight *"
-            onChange={handleChange}
-            value={dWeight}
-            pattern="^[0-9]{2,3}"
-            required
-          />
+          <label className={css.inputLabel}>
+            Height *
+            <input
+              className={css.formInput}
+              type="text"
+              name="height"
+              onChange={handleChange}
+              value={height}
+              pattern="^[0-9]{2,3}"
+              required
+            />
+          </label>
+          <label className={css.inputLabel}>
+            Age *
+            <input
+              className={css.formInput}
+              type="text"
+              name="age"
+              onChange={handleChange}
+              value={age}
+              pattern="^[0-9]{2,3}"
+              required
+            />
+          </label>
 
+          <label className={css.inputLabel}>
+            Current weight *
+            <input
+              className={css.formInput}
+              type="text"
+              name="cweight"
+              onChange={handleChange}
+              value={cWeight}
+              pattern="^[0-9]{2,3}"
+              required
+            />
+          </label>
+          <label className={css.inputLabel}>
+            Desired weight *
+            <input
+              className={css.formInput}
+              type="text"
+              name="dweight"
+              onChange={handleChange}
+              value={dWeight}
+              pattern="^[0-9]{2,3}"
+              required
+            />
+          </label>
           <div>
             <p className={css.bloodTitle}>Blood type *</p>
-            <div className={css.row}>
+            <div className={css.radioRow}>
               <label className={css.radioLabel}>
                 <input
                   type="radio"
@@ -152,11 +160,11 @@ const DailyCaloriesForm = () => {
         </button>
       </form>
 
-      {/* {isOpen && (
+      {isOpen && (
         <Modal close={toggle}>
-          <DailyCalorieIntake />
+          <DailyCalorieIntake close={toggle} />
         </Modal>
-      )} */}
+      )}
     </>
   );
 };

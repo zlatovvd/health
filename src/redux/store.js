@@ -3,6 +3,7 @@ import { productsReducer } from "./products/productsSlice";
 import { intakeReducer } from "./intake/intakeSlice";
 import { diaryReducer } from "./diary/diarySlice";
 import { authReducer } from "./auth/authSlice";
+import { modalReducer } from "./modal/modalSlice";
 
 export const store = configureStore({
     reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
         intake: intakeReducer,
         diary: diaryReducer,
         auth: authReducer,
+        modal: modalReducer,
     }
 })

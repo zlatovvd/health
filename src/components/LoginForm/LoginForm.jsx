@@ -32,22 +32,28 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className={css.loginForm}>
-      <input
-        type="text"
-        className={css.email}
-        name="email"
-        value={email}
-        onChange={handleOnChange}
-        placeholder="Email*"
-      />
-      <input
-        type="password"
-        className={css.password}
-        name="password"
-        value={password}
-        onChange={handleOnChange}
-        placeholder="Password*"
-      />
+      <h2 className={css.title}>Log in</h2>
+      <label className={css.formLabel}>
+        Email*
+        <input
+          type="text"
+          className={css.email}
+          name="email"
+          value={email}
+          onChange={handleOnChange}
+        />
+      </label>
+      <label className={css.formLabel}>
+        Password*
+        <input
+          type="password"
+          className={css.password}
+          name="password"
+          value={password}
+          onChange={handleOnChange}
+        />
+      </label>
+
       <div>
         <button className={css.button} onClick={handleLoginBtn}>
           Log in

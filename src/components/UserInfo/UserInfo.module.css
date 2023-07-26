@@ -1,7 +1,6 @@
-.userWrapper {
+.userInfo {
     display: flex;
-    align-items: center;
-    margin-left: auto;
+    align-items:center;
 }
 
 .userName {

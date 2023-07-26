@@ -1,38 +1,26 @@
 .registrationPage {
-    margin-left: auto;
-    margin-right: auto;
-    padding: 40px 20px 175px 20px;
-}
-
-.registrationPage h2 {
-    text-align: center;
-    margin: 0;
-    margin-bottom: 55px;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 14px;
-    line-height: 1.21;
-    color: #FC842D;
-    text-transform:uppercase;
+  padding-top: 120px;
 }
 
 @media screen and (min-width: 768px) {
-    
-    .registrationPage {
-        padding-top: 160px;
-        padding-bottom: 424px;
-    }
-
-    .registrationPage h2 {
-        text-align:left;
-        margin: 0;
-        margin-bottom: 55px;
-    }
+  .registrationPage {
+    padding-top: 240px;
+    padding-bottom: 424px;
+    background-image: url('images/strawberry-desktop.png'),
+      url('images/banana-tablet.png'), url('images/layer-42-tablet.png');
+    background-repeat: no-repeat;
+    background-position: left 470px top 470px, left 277px top 584px, left top;
+  }
 }
 
-@media screen and (min-width:1280px) {
-
-    .registrationPage {
-        padding-bottom: 186px;
-    }
+@media screen and (min-width: 1280px) {
+  .registrationPage {
+    padding-top: 306px;
+    padding-bottom: 186px;
+    background-image: url('images/strawberry-desktop.png'),
+      url('images/banana-desktop.png'), url('images/layer-desktop1.png'),
+      url('images/hero-background-desktop.png');
+    background-position: right top 470px, right top, right 190px top,
+      right top 40px;
+  }
 }

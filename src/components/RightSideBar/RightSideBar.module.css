@@ -11,6 +11,10 @@
     margin-right: auto;
 }
 
+.summaryLeftWrapper {
+    margin-bottom: 40px;
+}
+
 
 .summaryTitle {
     font-size: 14px;
@@ -53,6 +57,9 @@
 
     .rightSideBar {
         width: 768px;
+        background-image: url('images/layer-41-tablet.png');
+        background-repeat: no-repeat;
+        background-position: right bottom;
     }
 
     .container {
@@ -69,7 +76,9 @@
 
 @media screen and (min-width: 1280px) {
     .rightSideBar {
-        width: 517px;
+        padding-top: 293px;
+        width: 520px;
+        background-image: url('images/layer-desktop.png');
     }
 
     .container {

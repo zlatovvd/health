@@ -26,19 +26,19 @@ const RightSideBar = () => {
             <li className={css.summaryListItem}>
               <span className={css.summaryText}>Left</span>
               <span className={css.summaryValue}>
-                {Math.round(calculateCalories - totalCalories)} kcal
+                {(Math.round(calculateCalories - totalCalories)) || '000'} kcal
               </span>
             </li>
             <li className={css.summaryListItem}>
               <span className={css.summaryText}>Consumed</span>
               <span className={css.summaryValue}>
-                {Math.round(totalCalories)} kcal
+                {(Math.round(totalCalories)) || '000'} kcal
               </span>
             </li>
             <li className={css.summaryListItem}>
               <span className={css.summaryText}>Daily rate</span>
               <span className={css.summaryValue}>
-                {Math.round(calculateCalories)} kcal
+                {(Math.round(calculateCalories)) || '000'} kcal
               </span>
             </li>
             <li className={css.summaryListItem}>

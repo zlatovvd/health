@@ -2,7 +2,7 @@
     position: absolute;
     left: 0;
     top: 80px;
-    width: 100vw;
+    width: 320px;
     height: 100vh;
     list-style: none;
     margin: 0;
@@ -44,6 +44,7 @@
 @media screen and (min-width: 768px) {
 
     .navList {
+        width: 768px;
         padding-top: 100px;
     }
    

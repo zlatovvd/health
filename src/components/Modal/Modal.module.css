@@ -8,6 +8,7 @@
     visibility: visible;
     opacity: 1;
     transition: visibility 250ms linear, opacity 250ms linear;
+    z-index: 99999;
 }
 
 .isHidden {
