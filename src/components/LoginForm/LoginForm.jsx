@@ -19,6 +19,7 @@ const LoginForm = () => {
       case 'password':
         setPassword(value);
         break;
+      default:
     }
   };
 

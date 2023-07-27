@@ -51,7 +51,7 @@ const DiaryAddProductForm = () => {
     event.preventDefault();
     resetForm();
     const id = nanoid();
-    const { calories, categories, groupBloodNotAllowed, weight } = foundProduct;
+    const { calories,  weight } = foundProduct;
 
     const calculateCalories = Math.round((calories*grams)/weight);
 

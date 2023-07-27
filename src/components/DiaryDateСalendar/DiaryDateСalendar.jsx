@@ -1,7 +1,7 @@
 import css from './DiaryDateСalendar.module.css';
 import { Input } from '@chakra-ui/react';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectDiaryDate } from 'redux/diary/diarySelector';
 
 const DiaryDateСalendar = () => {
@@ -10,7 +10,7 @@ const DiaryDateСalendar = () => {
 
   const [diaryDate, setDiaryDate] = useState(day);
   
-  const dispatch = useDispatch(); 
+  //const dispatch = useDispatch(); 
 
     const handleChange = (event) => {
       console.log(event.target.value);

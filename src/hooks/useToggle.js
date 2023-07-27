@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectIsOpen } from 'redux/modal/modalSelector';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { selectIsOpen } from 'redux/modal/modalSelector';
 
 export const useToggle = (initialState = false) => {
   const [isOpen, setIsOpen] = useState(initialState);
 
-  const isModalOpen = useSelector(selectIsOpen);
-  const dispatch = useDispatch();
+  // const isModalOpen = useSelector(selectIsOpen);
+  // const dispatch = useDispatch();
 
   const open = () => {
     setIsOpen(true);
