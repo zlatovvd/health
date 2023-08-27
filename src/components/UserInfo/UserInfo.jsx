@@ -1,21 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux';
 import css from './UserInfo.module.css';
-import { authLogOut } from 'redux/auth/authSlice';
 import { selectUser } from 'redux/auth/authSelector';
+import { authLogoutThunk } from 'redux/auth/authThunk';
 
 const UserInfo = () => {
 
-  const {email} = useSelector(selectUser);
-
+  const {name} = useSelector(selectUser);
+  
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(authLogOut());
+    dispatch(authLogoutThunk());
   };
 
   return (
     <div className={css.userInfo}>
-      <span className={css.userName}>{email}</span>
+      <span className={css.userName}>{name}</span>
       <button className={css.exitBtn} type="button" onClick={handleClick}>
        Exit
       </button>

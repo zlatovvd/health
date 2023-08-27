@@ -1,35 +1,35 @@
 import { useState } from 'react';
 import css from './LoginForm.module.css';
 import { useDispatch } from 'react-redux';
-import { authLogIn } from 'redux/auth/authSlice';
+import { authLoginThunk } from 'redux/auth/authThunk';
+import { useNavigate } from 'react-router-dom';
+
+const initialState = {
+  email: '',
+  password: ''
+}
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  
+  const [values, setValues] = useState(initialState);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleOnChange = event => {
     const { name, value } = event.currentTarget;
 
-    switch (name) {
-      case 'email':
-        setEmail(value);
-        break;
-      case 'password':
-        setPassword(value);
-        break;
-      default:
-    }
+    setValues(prev => ({ ...prev, [name]: value }));
+
   };
 
-  const handleLoginBtn = () => {
-    dispatch(authLogIn({email, password}));
+  
+  const handleRegisteBtn = () => {navigate('/registration');};
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(authLoginThunk(values));
   };
-
-  const handleRegisteBtn = () => {};
-
-  const handleSubmit = () => {};
 
   return (
     <form onSubmit={handleSubmit} className={css.loginForm}>
@@ -40,8 +40,9 @@ const LoginForm = () => {
           type="text"
           className={css.email}
           name="email"
-          value={email}
+          value={values.email}
           onChange={handleOnChange}
+          required
         />
       </label>
       <label className={css.formLabel}>
@@ -50,13 +51,14 @@ const LoginForm = () => {
           type="password"
           className={css.password}
           name="password"
-          value={password}
+          value={values.password}
           onChange={handleOnChange}
+          required
         />
       </label>
 
       <div>
-        <button className={css.button} onClick={handleLoginBtn}>
+        <button className={css.button} type='submit'>
           Log in
         </button>
         <button className={css.button} onClick={handleRegisteBtn}>

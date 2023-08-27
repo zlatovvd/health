@@ -1,12 +1,20 @@
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout/Layout';
 import css from './App.module.css';
-import MainPage from 'pages/MainPage/MainPage';
-import LoginPage from 'pages/LoginPage/LoginPage';
-import RegistrationPage from 'pages/RegistrationPage/RegistrationPage';
 import { PublicRoute, PrivateRoute } from './AuthRouts';
-import DiaryPage from 'pages/DiaryPage/DiaryPage';
-import CalculatorPage from 'pages/CalculatorPage/CalculatorPage';
+import NotFound from 'pages/NotFound/NotFound';
+
+const MainPage = lazy(() => import('pages/MainPage/MainPage'));
+const RegistrationPage = lazy(() =>
+  import('pages/RegistrationPage/RegistrationPage')
+);
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
+const DiaryPage = lazy(() => import('pages/DiaryPage/DiaryPage'));
+const CalculatorPage = lazy(() =>
+  import('pages/CalculatorPage/CalculatorPage')
+);
+
 
 export const App = () => {
 
@@ -24,6 +32,7 @@ export const App = () => {
             <Route path="/diary" element={<DiaryPage />} />
           </Route>
         </Route>
+        <Route path="*" element={<NotFound/>} />
       </Routes>
     </div>
   );

@@ -1,33 +1,39 @@
 import { useState } from 'react';
 import css from './RegistrationForm.module.css';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { authLoginThunk, authRegisterThunk } from 'redux/auth/authThunk';
+
+const initialState = {
+  name: '',
+  email: '',
+  password: '',
+}
 
 const RegistrationForm = () => {
-  const [regname, setRegname] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  
+  const [values, setValues] = useState(initialState);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleOnChange = event => {
-    const { name, value } = event.currentTarget;
+    const { name, value } = event.target;
 
-    switch (name) {
-      case 'regname':
-        setRegname(value);
-        break;
-      case 'email':
-        setEmail(value);
-        break;
-      case 'password':
-        setPassword(value);
-        break;
-      default:
-    }
+    setValues(prev => ({ ...prev, [name]: value }));
+
   };
 
-  const handleLoginBtn = () => {};
+  const handleLoginBtn = () => {
+    navigate('/login');
+  };
 
-  const handleRegisteBtn = () => {};
-
-  const handleSubmit = () => {};
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('submit');
+    dispatch(authRegisterThunk(values));
+    //dispatch(authLoginThunk(values));
+  };
 
   return (
     <form onSubmit={handleSubmit} className={css.registerForm}>
@@ -37,9 +43,10 @@ const RegistrationForm = () => {
         <input
           type="text"
           className={css.regname}
-          name="regname"
-          value={regname}
+          name="name"
+          value={values.name}
           onChange={handleOnChange}
+          required
         />
       </label>
       <label className={css.formLabel}>
@@ -48,8 +55,9 @@ const RegistrationForm = () => {
           type="text"
           className={css.email}
           name="email"
-          value={email}
+          value={values.email}
           onChange={handleOnChange}
+          required
         />
       </label>
       <label className={css.formLabel}>
@@ -58,16 +66,17 @@ const RegistrationForm = () => {
           type="password"
           className={css.password}
           name="password"
-          value={password}
+          value={values.password}
           onChange={handleOnChange}
+          required
         />
       </label>
 
       <div>
-        <button className={css.button} onClick={handleRegisteBtn}>
+        <button className={css.button} type='submit'>
           Register
         </button>
-        <button className={css.button} onClick={handleLoginBtn}>
+        <button className={css.button} onClick={handleLoginBtn} type='button'>
           Log in
         </button>
       </div>

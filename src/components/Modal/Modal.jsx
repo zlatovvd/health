@@ -40,7 +40,7 @@ const Modal = ({ close, children }) => {
     return () => {
       document.removeEventListener('keydown', handleKeyEscape);
     };
-  }, []);
+  }, [handleKeyEscape, handleBackdropClick, dispatch]);
 
   return ReactDOM.createPortal(
     <div
