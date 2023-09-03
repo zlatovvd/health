@@ -2,8 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   authLoginThunk,
   authLogoutThunk,
+  authRefresh,
   authRegisterThunk,
 } from './authThunk';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 const authInitialState = {
   status: 'idle',
@@ -47,24 +50,33 @@ const authSlice = createSlice({
       })
       .addCase(authLogoutThunk.fulfilled, state => {
         state.status = 'success';
-        state.user = { name: null, email: null }
+        state.user = { name: null, email: null };
         state.token = '';
         state.isLoggedIn = false;
       })
       .addCase(authLogoutThunk.rejected, state => {
         state.status = 'error';
+      })
+      .addCase(authRefresh.pending, state => {
+        state.status = 'loading';
+        state.isRefreshing = true;
+      })
+      .addCase(authRefresh.fulfilled, (state, { payload }) => {
+        state.status = 'success';
+        state.user = payload;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(authRefresh.rejected, state => {
+        state.isRefreshing = false;
       });
   },
 });
 
-export const authReducer = authSlice.reducer;
+const persistConfig = {
+  key: 'Auth',
+  storage,
+  whitelist: ['token'],
+};
 
-//npm export const { authLogIn, authLogOut } = authSlice.actions;
-
-// authRouter.post("/register", register);
-
-// authRouter.post("/login", login);
-
-// authRouter.post("/logout", authenticate, logout);
-
-// authRouter.get("/current", authenticate, current);
+export const authReducer = persistReducer(persistConfig, authSlice.reducer);

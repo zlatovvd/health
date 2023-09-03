@@ -4,12 +4,12 @@ export const selectDiary = state => state.diary.data;
 
 export const selectDiaryDate = state => state.diary.diaryDate;
 
-export const selectDiaryOfDate = createSelector(
-  [selectDiary, selectDiaryDate],
-  (diary, date) => {
-    return diary.filter(items => items.diaryDate === date);
-  }
-);
+// export const selectDiaryOfDate = createSelector(
+//   [selectDiary, selectDiaryDate],
+//   (diary, date) => {
+//     return diary.filter(items => items.diaryDate === date);
+//   }
+// );
 
 export const selectTotalCalories = createSelector([selectDiary], diary => {
   let totalDiary = 0;

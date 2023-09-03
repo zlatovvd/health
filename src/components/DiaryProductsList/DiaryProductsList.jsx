@@ -10,7 +10,7 @@ const DiaryProductsList = () => {
     <div className={css.productList}>
       <ul className={css.diaryProductsList}>
         {diary.map(item => (
-          <DiaryProductsListItem key={item.id} diary={item} />
+          <DiaryProductsListItem key={item._id} diary={item} />
         ))}
       </ul>
 

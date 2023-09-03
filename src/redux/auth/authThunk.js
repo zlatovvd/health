@@ -35,15 +35,31 @@ export const authLoginThunk = createAsyncThunk(
   }
 );
 
-export const authLogoutThunk = createAsyncThunk('user/logout', async (_, thunkAPI) => {
-  try {
-    const res = fetchApi.post('users/logout')
-    cleareAuthHeader();
-  } catch (error) {
-    thunkAPI.rejectWithValue(error.message);
+export const authLogoutThunk = createAsyncThunk(
+  'user/logout',
+  async (_, thunkAPI) => {
+    try {
+      fetchApi.post('users/logout');
+      cleareAuthHeader();
+    } catch (error) {
+      thunkAPI.rejectWithValue(error.message);
+    }
   }
-})
+);
 
-export const authRefresh = createAsyncThunk('user/refresh', async (_, thunkAPI) => {
-  
-})
+export const authRefresh = createAsyncThunk(
+  'user/refresh',
+  async (_, thunkAPI) => {
+    try {
+      const { token } = thunkAPI.getState().auth;
+      if (!token) {
+        return thunkAPI.rejectWithValue('Is not valid token');
+      }
+      setAuthHeader(token);
+      const res = await fetchApi.get('users/current');
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

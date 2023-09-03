@@ -2,7 +2,7 @@ import { useState } from 'react';
 import css from './RegistrationForm.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { authLoginThunk, authRegisterThunk } from 'redux/auth/authThunk';
+import { authRegisterThunk } from 'redux/auth/authThunk';
 
 const initialState = {
   name: '',
@@ -19,9 +19,7 @@ const RegistrationForm = () => {
 
   const handleOnChange = event => {
     const { name, value } = event.target;
-
     setValues(prev => ({ ...prev, [name]: value }));
-
   };
 
   const handleLoginBtn = () => {
@@ -30,9 +28,7 @@ const RegistrationForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('submit');
     dispatch(authRegisterThunk(values));
-    //dispatch(authLoginThunk(values));
   };
 
   return (

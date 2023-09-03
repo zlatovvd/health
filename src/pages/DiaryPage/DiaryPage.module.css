@@ -56,8 +56,10 @@
   }
 
   .diaryAddProductForm {
-    position: static;
+    position:static;
+    height: 100px;
     visibility: visible;
+    transform: translateX(0);
   }
 }
 

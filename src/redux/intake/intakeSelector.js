@@ -1,0 +1,1 @@
+export const selectIntakeisLoading = state => state.intake.isLoading;

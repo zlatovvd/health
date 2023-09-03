@@ -1,7 +1,17 @@
+import { intakeAddThunk, intakeGetThunk, intakeUpdateThunk } from './intakeThunk';
+
 const { createSlice } = require('@reduxjs/toolkit');
 
 const initIntake = {
-  personInfo: {},
+  status: 'idle',
+  isLoading: false,
+  personInfo: {
+    height: '',
+    age: '',
+    cweight: '',
+    dweight: '',
+    typeblood: 1,
+  },
 };
 
 const intakeSlice = createSlice({
@@ -9,11 +19,50 @@ const intakeSlice = createSlice({
   initialState: initIntake,
   reducers: {
     addPersonInfo: {
-      reducer(state, {payload}) {
+      reducer(state, { payload }) {
         state.personInfo = payload;
-      }
-    }
-
+      },
+    },
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(intakeAddThunk.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(intakeAddThunk.fulfilled, (state, { payload }) => {
+        state.status = 'success';
+        console.log('payload', payload);
+        state.personInfo = payload;
+      })
+      .addCase(intakeAddThunk.rejected, state => {
+        state.status = 'error';
+      })
+      .addCase(intakeUpdateThunk.pending, state => {
+        state.status = 'loading';
+        state.isLoading = true;
+      })
+      .addCase(intakeUpdateThunk.fulfilled, (state, { payload }) => {
+        state.status = 'success';
+        state.isLoading = false;
+        state.personInfo = payload;
+      })
+      .addCase(intakeUpdateThunk.rejected, state => {
+        state.status = 'errer';
+        state.isLoading = false;
+      })
+      .addCase(intakeGetThunk.pending, state => {
+        state.status = 'loading';
+        state.isLoading = true;
+      })
+      .addCase(intakeGetThunk.fulfilled, (state, { payload }) => {
+        state.status = 'success';
+        state.personInfo = payload;
+        state.isLoading = false;
+      })
+      .addCase(intakeGetThunk.rejected, state => {
+        state.status = 'error';
+        state.isLoading = false;
+      });
   },
 });
 

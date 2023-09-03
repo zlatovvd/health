@@ -1,9 +1,8 @@
 import css from './DiaryAddProductForm.module.css';
-import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectDiaryDate } from 'redux/diary/diarySelector';
-import { addDiary } from 'redux/diary/diarySlice';
+import { diaryAddProductThunk } from 'redux/diary/diaryThunk';
 import { selectIsOpen } from 'redux/modal/modalSelector';
 import { open } from 'redux/modal/modalSlice';
 import { setFilter } from 'redux/products/productsSlice';
@@ -50,12 +49,12 @@ const DiaryAddProductForm = () => {
   const onSubmit = event => {
     event.preventDefault();
     resetForm();
-    const id = nanoid();
+    
     const { calories,  weight } = foundProduct;
 
     const calculateCalories = Math.round((calories*grams)/weight);
 
-    dispatch(addDiary({ id, product, grams, calories: calculateCalories, diaryDate }));
+    dispatch(diaryAddProductThunk({ name: product, weight: grams, callories: calculateCalories, date: diaryDate }));
     if (isModalOpen) {
       dispatch(open(false));
     }

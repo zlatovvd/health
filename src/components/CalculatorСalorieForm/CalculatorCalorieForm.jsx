@@ -1,45 +1,31 @@
 import css from './CalculatorCalorieForm.module.css';
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addPersonInfo } from "redux/intake/intakeSlice";
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectPersonInfo } from 'redux/products/selectors';
+import { intakeAddThunk, intakeUpdateThunk } from 'redux/intake/intakeThunk';
 
 const CalculatorCalorieForm = () => {
   const personInfo = useSelector(selectPersonInfo);
 
-  const [typeblood, setTypeBlood] = useState(personInfo.typeblood || '1');
-  const [height, setHeight] = useState(personInfo.height);
-  const [age, setAge] = useState(personInfo.age);
-  const [cWeight, setCWeight] = useState(personInfo.cWeight);
-  const [dWeight, setDWeight] = useState(personInfo.dWeight);
+  console.log('personinfo', personInfo);
+
+  const [values, setValues] = useState(personInfo);
 
   const dispatch = useDispatch();
 
   const handleChange = event => {
     const { name, value } = event.target;
-    switch (name) {
-      case 'typeblood':
-        setTypeBlood(value);
-        break;
-      case 'height':
-        setHeight(value);
-        break;
-      case 'age':
-        setAge(value);
-        break;
-      case 'cweight':
-        setCWeight(value);
-        break;
-      case 'dweight':
-        setDWeight(value);
-        break;
-      default:
-    }
+
+    setValues(prev => ({ ...prev, [name]: value }));
   };
 
   const onSubmit = event => {
     event.preventDefault();
-    dispatch(addPersonInfo({ height, age, cWeight, dWeight, typeblood }));
+    if (values._id) {
+      dispatch(intakeUpdateThunk(values._id, values));
+    } else {
+      dispatch(intakeAddThunk(values));
+    }
   };
 
   return (
@@ -55,7 +41,7 @@ const CalculatorCalorieForm = () => {
             type="text"
             name="height"
             onChange={handleChange}
-            value={height}
+            value={values.height}
             pattern="^[0-9]{2,3}"
             required
           />
@@ -67,7 +53,7 @@ const CalculatorCalorieForm = () => {
             type="text"
             name="age"
             onChange={handleChange}
-            value={age}
+            value={values.age}
             pattern="^[0-9]{2,3}"
             required
           />
@@ -80,7 +66,7 @@ const CalculatorCalorieForm = () => {
             type="text"
             name="cweight"
             onChange={handleChange}
-            value={cWeight}
+            value={values.cweight}
             pattern="^[0-9]{2,3}"
             required
           />
@@ -92,7 +78,7 @@ const CalculatorCalorieForm = () => {
             type="text"
             name="dweight"
             onChange={handleChange}
-            value={dWeight}
+            value={values.dweight}
             pattern="^[0-9]{2,3}"
             required
           />
@@ -104,7 +90,7 @@ const CalculatorCalorieForm = () => {
               <input
                 type="radio"
                 name="typeblood"
-                checked={typeblood === '1'}
+                checked={Number(values.typeblood) === 1}
                 className={css.inputRadio}
                 value="1"
                 onChange={handleChange}
@@ -115,7 +101,7 @@ const CalculatorCalorieForm = () => {
             <label className={css.radioLabel}>
               <input
                 type="radio"
-                checked={typeblood === '2'}
+                checked={Number(values.typeblood) === 2}
                 name="typeblood"
                 className={css.inputRadio}
                 value="2"
@@ -127,7 +113,7 @@ const CalculatorCalorieForm = () => {
             <label className={css.radioLabel}>
               <input
                 type="radio"
-                checked={typeblood === '3'}
+                checked={Number(values.typeblood) === 3}
                 name="typeblood"
                 className={css.inputRadio}
                 value="3"
@@ -139,7 +125,7 @@ const CalculatorCalorieForm = () => {
             <label className={css.radioLabel}>
               <input
                 type="radio"
-                checked={typeblood === '4'}
+                checked={Number(values.typeblood) === 4}
                 name="typeblood"
                 className={css.inputRadio}
                 value="4"

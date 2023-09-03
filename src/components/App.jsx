@@ -1,9 +1,12 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout/Layout';
 import css from './App.module.css';
 import { PublicRoute, PrivateRoute } from './AuthRouts';
 import NotFound from 'pages/NotFound/NotFound';
+import { useDispatch } from 'react-redux';
+import { authRefresh } from 'redux/auth/authThunk';
+import { useAuth } from 'hooks/useAuth';
 
 const MainPage = lazy(() => import('pages/MainPage/MainPage'));
 const RegistrationPage = lazy(() =>
@@ -18,7 +21,15 @@ const CalculatorPage = lazy(() =>
 
 export const App = () => {
 
-  return (
+  const dispatch = useDispatch();
+
+  const { isRefreshing } = useAuth();
+  
+  useEffect(() => {
+    dispatch(authRefresh());
+  }, []);
+
+  return isRefreshing ? (<b>Refreshing user...</b>) : (
     <div className={css.app}>
       <Routes>
         <Route path="/" element={<Layout />}>
