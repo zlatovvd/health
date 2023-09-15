@@ -6,11 +6,12 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { intakeGetThunk } from 'redux/intake/intakeThunk';
 import { useIntake } from 'hooks/useIntake';
+import Loader from 'components/Loader/Loader';
 
 const CalculatorPage = () => {
   const dispatch = useDispatch();
 
-  const { isLoading } = useIntake();
+  const { isLoading, isUpdating } = useIntake();
 
   useEffect(() => {
     dispatch(intakeGetThunk());
@@ -21,7 +22,8 @@ const CalculatorPage = () => {
   ) : (
     <div className={css.calculatorPage}>
       <CalculatorCalorieForm />
-      <RightSideBar />
+        <RightSideBar />
+        {isUpdating && <Loader/>}
     </div>
   );
 };

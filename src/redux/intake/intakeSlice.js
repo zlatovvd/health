@@ -5,6 +5,7 @@ const { createSlice } = require('@reduxjs/toolkit');
 const initIntake = {
   status: 'idle',
   isLoading: false,
+  isUpdating: false,
   personInfo: {
     height: '',
     age: '',
@@ -39,16 +40,16 @@ const intakeSlice = createSlice({
       })
       .addCase(intakeUpdateThunk.pending, state => {
         state.status = 'loading';
-        state.isLoading = true;
+        state.isUpdating = true;
       })
       .addCase(intakeUpdateThunk.fulfilled, (state, { payload }) => {
         state.status = 'success';
-        state.isLoading = false;
+        state.isUpdating = false;
         state.personInfo = payload;
       })
       .addCase(intakeUpdateThunk.rejected, state => {
         state.status = 'errer';
-        state.isLoading = false;
+        state.isUpdating = false;
       })
       .addCase(intakeGetThunk.pending, state => {
         state.status = 'loading';
@@ -57,6 +58,7 @@ const intakeSlice = createSlice({
       .addCase(intakeGetThunk.fulfilled, (state, { payload }) => {
         state.status = 'success';
         state.personInfo = payload;
+        console.log('thunk', payload);
         state.isLoading = false;
       })
       .addCase(intakeGetThunk.rejected, state => {

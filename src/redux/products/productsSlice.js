@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import data from '../../data.json';
+import { productsFilterThunk } from './productThunk';
 
 const productsInitState = {
   data,
@@ -21,6 +22,16 @@ const productsSlice = createSlice({
       }
     }
   },
+  extraReducers: builder => {
+    builder
+      .addCase(productsFilterThunk.pending, state => {
+      state.status = 'lodaing';
+      })
+      .addCase(productsFilterThunk.fulfilled, (state, { payload }) => {
+        state.status = 'success';
+        state.data = payload;
+    })
+  }
 });
 
 export const { addProductAction, setFilter } = productsSlice.actions;

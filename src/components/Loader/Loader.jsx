@@ -10,6 +10,9 @@ const Loader = () => {
       emptyColor="#E0E0E0"
       color="#FC842D"
       thickness="5px"
+      position={'absolute'}
+      top={'50%'}
+      left={'50%'}
     />
   );
 };

@@ -22,7 +22,8 @@ const CalculatorCalorieForm = () => {
   const onSubmit = event => {
     event.preventDefault();
     if (values._id) {
-      dispatch(intakeUpdateThunk(values._id, values));
+      //console.log('values dispatch', values);
+      dispatch(intakeUpdateThunk(values));
     } else {
       dispatch(intakeAddThunk(values));
     }

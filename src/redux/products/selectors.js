@@ -28,14 +28,14 @@ export const selectCalculateDailyCalories = createSelector(
   [selectPersonInfo],
   personInfo => {
     if(personInfo) {
-      const { height, age, cWeight, dWeight } = personInfo;
+      const { height, age, cweight, dweight } = personInfo;
 
       return (
-        10 * Number(cWeight) +
+        10 * Number(cweight) +
         6.25 * Number(height) -
         5 * Number(age) -
         161 -
-        10 * (Number(cWeight) - Number(dWeight))
+        10 * (Number(cweight) - Number(dweight))
       );
     }
     return 0;

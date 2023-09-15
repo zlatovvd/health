@@ -39,7 +39,7 @@ const diarySlice = createSlice({
         console.log('payload', payload);
       })
       .addCase(diaryAddProductThunk.rejected, state => {
-        state.staus = 'error';
+        state.status = 'error';
       })
       .addCase(diaryGetProductThunk.pending, state => {
         state.status = 'loading';

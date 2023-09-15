@@ -11,8 +11,8 @@ const DailyCaloriesForm = () => {
   const [typeblood, setTypeBlood] = useState('1');
   const [height, setHeight] = useState('');
   const [age, setAge] = useState('');
-  const [cWeight, setCWeight] = useState('');
-  const [dWeight, setDWeight] = useState('');
+  const [cweight, setCWeight] = useState('');
+  const [dweight, setDWeight] = useState('');
 
   const dispatch = useDispatch();
 
@@ -40,7 +40,7 @@ const DailyCaloriesForm = () => {
 
   const onSubmit = event => {
     event.preventDefault();
-    dispatch(addPersonInfo({ height, age, cWeight, dWeight, typeblood }));
+    dispatch(addPersonInfo({ height, age, cweight, dweight, typeblood }));
     toggle();
   };
 
@@ -83,7 +83,7 @@ const DailyCaloriesForm = () => {
               type="text"
               name="cweight"
               onChange={handleChange}
-              value={cWeight}
+              value={cweight}
               pattern="^[0-9]{2,3}"
               required
             />
@@ -95,7 +95,7 @@ const DailyCaloriesForm = () => {
               type="text"
               name="dweight"
               onChange={handleChange}
-              value={dWeight}
+              value={dweight}
               pattern="^[0-9]{2,3}"
               required
             />
